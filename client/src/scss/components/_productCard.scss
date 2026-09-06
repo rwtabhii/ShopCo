@@ -1,0 +1,163 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+@use "../abstracts/functions" as *;
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background-color: transparent;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  &__image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1.05;
+    background-color: $color-background-gray;
+    border-radius: $radius-card;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    @include flex-center;
+    position: relative;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  &__out-of-stock-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: $color-white;
+    font-size: rem(11);
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    letter-spacing: 0.05rem;
+  }
+
+  &__title {
+    font-family: $font-primary;
+    font-size: rem(18);
+    font-weight: 700;
+    color: $color-dark;
+    margin-bottom: 0.35rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    @media (max-width: 768px) {
+      font-size: rem(15);
+    }
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+
+      img {
+        width: 18px;
+        height: 18px;
+        object-fit: contain;
+
+        @media (max-width: 768px) {
+          width: 14px;
+          height: 14px;
+        }
+      }
+    }
+
+    .score {
+      font-size: rem(14);
+      font-weight: 500;
+      color: $color-text;
+
+      @media (max-width: 768px) {
+        font-size: rem(12);
+      }
+
+      small {
+        color: $color-text-light;
+      }
+    }
+  }
+
+  &__price {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: rem(22);
+    font-weight: 700;
+    color: $color-dark;
+
+    @media (max-width: 768px) {
+      font-size: rem(18);
+      gap: 0.4rem;
+    }
+
+    .original {
+      color: $color-text-faded;
+      text-decoration: line-through;
+      font-size: rem(20);
+      font-weight: 500;
+
+      @media (max-width: 768px) {
+        font-size: rem(15);
+      }
+    }
+
+    .badge {
+      background-color: rgba(255, 51, 51, 0.1);
+      color: $color-danger;
+      font-size: rem(12);
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: $radius-pill;
+
+      @media (max-width: 768px) {
+        font-size: rem(10);
+        padding: 0.15rem 0.4rem;
+      }
+    }
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+}
